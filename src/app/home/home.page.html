@@ -1,14 +1,55 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-title>
-      Ionic Blank
+      IMC
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+    <ion-text color="tertiary" class="ion-text-center">
+      <h1>Calcule seu IMC</h1>
+    </ion-text>
+    <ion-item>
+      <ion-label position="floating">Altura (m)<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="altura" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Peso (Kg)<ion-text color="danger">*</ion-text></ion-label>
+      <ion-input [(ngModel)]="peso" type="number"></ion-input>
+    </ion-item>
+
+    <ion-button color="tertiary" expand="block" shape="round" (click)="calculaIMC()">
+      Calcular IMC
+    </ion-button>
   </div>
+  <ion-card *ngIf="imc<=18.5" class="ion-text-center" color="warning">
+    <ion-text>
+      <h1>Você esta abaixo do peso</h1>
+      <h6>Seu IMC: {{imc}}</h6>
+    </ion-text>
+  </ion-card>
+
+  <ion-card *ngIf="imc>18.5&&imc<=25" text-center color="success">
+    <ion-text>
+      <h1>Você esta com peso ideal</h1>
+      <h6>Seu IMC: {{imc}}</h6>
+    </ion-text>
+  </ion-card>
+
+  <ion-card *ngIf="imc>25&&imc<=30" text-center color="warning">
+    <ion-text>
+      <h1>Você esta acima do peso</h1>
+      <h6>Seu IMC: {{imc}}</h6>
+    </ion-text>
+  </ion-card>
+
+  <ion-card *ngIf="imc>30" text-center color="danger">
+    <ion-text>
+      <h1>Você esta obeso</h1>
+      <h6>Seu IMC: {{imc}}</h6>
+    </ion-text>
+  </ion-card>
 </ion-content>
